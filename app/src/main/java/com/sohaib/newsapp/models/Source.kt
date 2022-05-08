@@ -1,4 +1,4 @@
-package com.sohaib.newsapp
+package com.sohaib.newsapp.models
 
 data class Source(
     val id: Any,

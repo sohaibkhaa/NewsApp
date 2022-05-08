@@ -1,6 +1,6 @@
 package com.sohaib.newsapp.api
 
-import com.sohaib.newsapp.NewsResponse
+import com.sohaib.newsapp.models.NewsResponse
 import com.sohaib.newsapp.util.Constants.Companion.API_KEY
 import retrofit2.Response
 import retrofit2.http.GET

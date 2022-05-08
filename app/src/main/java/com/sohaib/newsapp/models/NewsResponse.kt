@@ -1,4 +1,4 @@
-package com.sohaib.newsapp
+package com.sohaib.newsapp.models
 
 data class NewsResponse(
     val articles: List<Article>,
