@@ -5,6 +5,7 @@ import android.view.View
 import android.webkit.WebViewClient
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
+import com.google.android.material.snackbar.Snackbar
 import com.sohaib.newsapp.R
 import com.sohaib.newsapp.databinding.FragmentArticleBinding
 import com.sohaib.newsapp.ui.NewsActivity
@@ -24,6 +25,11 @@ class ArticleFragment: Fragment(R.layout.fragment_article) {
         binding.webView.apply {
             webViewClient = WebViewClient()
             loadUrl(article.url)
+        }
+
+        binding.fab.setOnClickListener {
+            viewModel.savedArticle(article)
+            Snackbar.make(view, "Article saved successfully", Snackbar.LENGTH_SHORT).show()
         }
     }
 
