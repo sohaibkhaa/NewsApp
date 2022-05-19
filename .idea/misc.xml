@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="../../../../../layout/custom_preview.xml" value="0.19907407407407407" />
         <entry key="app/src/main/res/drawable/ic_all_news.xml" value="0.1075" />
         <entry key="app/src/main/res/drawable/ic_breaking_news.xml" value="0.1075" />
         <entry key="app/src/main/res/drawable/ic_favorite.xml" value="0.1075" />

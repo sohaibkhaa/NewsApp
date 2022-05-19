@@ -21,7 +21,7 @@ class NewsAdapter : RecyclerView.Adapter<NewsAdapter.ArticleViewHolder>() {
         }
 
         override fun areContentsTheSame(oldItem: Article, newItem: Article): Boolean {
-            return oldItem.hashCode() == newItem.hashCode()
+            return oldItem == newItem
         }
     }
 
@@ -43,7 +43,7 @@ class NewsAdapter : RecyclerView.Adapter<NewsAdapter.ArticleViewHolder>() {
             Glide.with( root.context).load(article.urlToImage).into(ivArticleImage)
             tvSource.text = article.source?.name
             tvTitle.text = article.title
-            tvDescription.text = article.description!!
+            tvDescription.text = article.description?:""
             tvPublishedAt.text = article.publishedAt
             root.setOnClickListener {
                 onItemClickListener?.let { it(article) }
