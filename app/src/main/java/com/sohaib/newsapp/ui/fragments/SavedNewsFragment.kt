@@ -1,8 +1,10 @@
 package com.sohaib.newsapp.ui.fragments
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -13,6 +15,10 @@ import com.sohaib.newsapp.adapters.NewsAdapter
 import com.sohaib.newsapp.databinding.FragmentSavedNewsBinding
 import com.sohaib.newsapp.ui.NewsActivity
 import com.sohaib.newsapp.ui.NewsViewModel
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
+
+private const val TAG = "SavedNewsFragment"
 
 class SavedNewsFragment : Fragment(R.layout.fragment_saved_news) {
     lateinit var viewModel: NewsViewModel
@@ -49,12 +55,14 @@ class SavedNewsFragment : Fragment(R.layout.fragment_saved_news) {
             }
 
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-                val position = viewHolder.adapterPosition
-                val article = newsAdapter.differ.currentList[position]
-                viewModel.deleteArticle(article)
+                val position = viewHolder.layoutPosition
+                val article = newsAdapter.snapshot()[position]
+                viewModel.deleteArticle(article!!)
+                getData()
                 Snackbar.make(view, "Successfully deleted article", Snackbar.LENGTH_LONG).apply {
                     setAction("Undo") {
                         viewModel.savedArticle(article)
+                        getData()
                     }
                     show()
                 }
@@ -65,8 +73,14 @@ class SavedNewsFragment : Fragment(R.layout.fragment_saved_news) {
             attachToRecyclerView(binding.rvSavedNews)
         }
 
-        viewModel.getSavedNews().observe(viewLifecycleOwner) { articles ->
-            newsAdapter.differ.submitList(articles)
+        getData()
+    }
+
+    private fun getData() {
+        lifecycleScope.launch {
+            viewModel.getSavedNews().collectLatest {
+                newsAdapter.submitData(it)
+            }
         }
     }
 

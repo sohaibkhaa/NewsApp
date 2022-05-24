@@ -1,19 +1,17 @@
 package com.sohaib.newsapp.repository
 
-import com.sohaib.newsapp.api.RetrofitInstance
 import com.sohaib.newsapp.db.ArticleDatabase
 import com.sohaib.newsapp.models.Article
 
 class NewsRepository(
-    val db: ArticleDatabase
+    private val db: ArticleDatabase
 ) {
-    suspend fun getBreakingNews(countryCode: String, pageNumber: Int) =
-        RetrofitInstance.api.getBreakingNews(countryCode, pageNumber)
-    suspend fun searchNews(searchQuery:String, pageNumber: Int) =
-        RetrofitInstance.api.searchForNews(searchQuery, pageNumber)
+    fun getBreakingNews() = BreakingNewsPagingSource()
 
-    suspend fun upsert(article:Article) = db.getArticleDao().upsert(article)
+    fun searchNews(searchQuery: String) = SearchNewsPagingSource(searchQuery)
 
-    fun getSavedNews() = db.getArticleDao().getAllArticles()
+    suspend fun upsert(article: Article) = db.getArticleDao().upsert(article)
+
+    fun getSavedNews() = SavedNewsPagingSource(db)
     suspend fun deleteArticle(article: Article) = db.getArticleDao().deleteArticle(article)
 }
