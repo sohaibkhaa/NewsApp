@@ -1,18 +1,12 @@
 package com.sohaib.newsapp.ui
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import androidx.paging.*
 import com.sohaib.newsapp.models.Article
-import com.sohaib.newsapp.models.NewsResponse
 import com.sohaib.newsapp.repository.NewsRepository
 import com.sohaib.newsapp.util.Constants.Companion.QUERY_PAGE_SIZE
-import com.sohaib.newsapp.util.Resource
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
-import retrofit2.Response
 
 class NewsViewModel(
     private val newsRepository: NewsRepository
