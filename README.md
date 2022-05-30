@@ -1,6 +1,7 @@
 # News App
 
-An Android News Application written purely in Kotlin.<br>The project uses MVVM architecture, Retrofit for network calling, Paging 3 for pagination, News API for getting news, and Room for saving news.
+An Android News Application is written purely in Kotlin.
+The project uses MVVM architecture, Retrofit for network calls, Paging 3 for pagination, News API for getting news, and Room for saving news.
 
 <img src="/previews/Screenshot_20220524_180322.png" height="400"><img src="/previews/Screenshot_20220524_180313.png" height="400"><img src="/previews/Screenshot_20220524_180155.png" height="400"><img src="/previews/Screenshot_20220524_180357.png" height="400">
 
