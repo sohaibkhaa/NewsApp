@@ -18,5 +18,5 @@ The project uses MVVM architecture, Retrofit for network calls, Paging 3 for pag
 * ViewBinding
 
 ### How to Run?
-1. Get your Google Maps Api key from [newsapi.org](https://newsapi.org/)
+1. Get your News Api key from [newsapi.org](https://newsapi.org/)
 2. Insert Api key in app/src/main/java/com/sohaib/newsapp/util/Constants.KT **YOUR API KEY HERE**
